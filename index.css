@@ -1,0 +1,67 @@
+#warGame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*these are awesome! -use google-*/
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    /*need to use transform: translate to center*/
+    transform: translate(-50%, -50%);
+}
+
+.gameGrid {
+    width: 150px;
+    height: 150px;
+    cursor: crosshair;
+    border: 2px dashed black;
+    /*need text styling for the 'X' or 'O'*/
+    text-align: center;
+    font-size: 130px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
+/*use ::after commands to append 'X' or 'O' to the class of the grid element*/
+.x::after {
+    content: 'X';
+}
+
+.o::after {
+    content:'O';
+}
+
+/*add some visual feedback when cell is used*/
+.disabled {
+    cursor: not-allowed
+}
+/*when the grid space is taken, the cursor will show as a "do not go" sign*/
+.taken {
+    cursor: not-allowed;
+}
+/*when the grid space is a valid play, the grid will get a green background*/
+.gameGrid:not(.taken):hover {
+    background: green;
+}
+
+/*setting the 'game over' text to be invisible*/
+.armistice {
+    display: none;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.armisticeText {
+    position: absolute;
+    top: -300px;
+    font-size: 80px;
+    font-family: sans-serif;
+    text-align: center;
+}
+/* we will add this class to the armistice div when we want the game to be over*/
+.seen {
+    display: block;
+}
+
