@@ -7,8 +7,8 @@ const warGame = {
 
     stateO: [],
     
-    //create an array of arrays, these states are win states, or end states, and we check the stateX or stateO against them
-    endStates : [
+    //create an array of arrays, these states are victory states, and we check the stateX or stateO against them
+    victoryStates : [
         //column end states
         ['0','3','6'],
         ['1','4','7'],
@@ -31,6 +31,8 @@ document.addEventListener('click', e => {
     const freeSpace = target.classList.contains('gameGrid')
     const takenCell = target.classList.contains('taken')
 
+//adding restart event listener
+
     //now we loop to see if the player clicks on an available, or taken space//
     if (freeSpace && !takenCell) {
         //first we update the cell, then end turn
@@ -52,17 +54,27 @@ document.addEventListener('click', e => {
     warGame.turnX = !warGame.turnX
     console.log('turn end')      
     
-    console.log("checking for win and lose")
+    console.log("checking for draw, win, and lose")
+    //If the gameGrid does not have anymore freeSpace spots, show armistice message and declare war button
     if (!document.querySelectorAll('.gameGrid:not(.taken)').length) {
         document.querySelector('.armistice').classList.add('seen')
         document.querySelector('.armisticeText').textContent = 'Draw!'
         console.log("draw checked")
     }
-});
-// console.log("checking for win and lose")
-// if (!document.querySelectorAll('.gameGrid:not(.taken)').length) {
-    // document.querySelector('.armistice').classList.add('seen')
-    // document.querySelector('.armisticeText').textContent = 'Draw!'
-    // console.log("draw checked")
-// }
+    //loop through winning states, 'forEach' will cycle through every array in the victoryStates array, checking each condition
+    warGame.victoryStates.forEach(victoryState => {
+        const xVictory = victoryState.every(state => warGame.stateX.includes(state))
+        const oVictory = victoryState.every(state => warGame.stateO.includes(state))
 
+        if (xVictory || oVictory) {
+            document.querySelectorAll('.gameGrid').forEach(cell => cell.classList.add('taken'))
+            document.querySelector('.armistice').classList.add('seen')
+            document.querySelector('.armisticeText').textContent = xVictory
+                //the ?,: is a shorthand way of doing an if, else loop. very useful
+                ? 'X wins!'
+                : 'O wins!'
+        }
+
+    });
+
+});
