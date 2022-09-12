@@ -81,8 +81,8 @@ document.querySelector('.declareWar').addEventListener('click', () => {
             document.querySelector('.armistice').classList.add('seen')
             document.querySelector('.armisticeText').textContent = xVictory
                 //the ?,: is a shorthand way of doing an if, else loop. very useful
-                ? 'X wins!'
-                : 'O wins!'
+                ? 'X Wins!'
+                : 'O Wins!'
         }
 
     });

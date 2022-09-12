@@ -1,3 +1,14 @@
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-style: italic;
+}
+p {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
 #warGame {
     position: absolute;
     top: 50%;
@@ -56,7 +67,8 @@
     font-size: 80px;
     font-family: sans-serif;
     text-align: center;
-    transform: translateX(-45%);
+    transform: translateX(-25%);
+    font-weight: bold;
 }
 /* we will add this class to the armistice div when we want the game to be over*/
 .seen {
