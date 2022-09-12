@@ -32,6 +32,16 @@ document.addEventListener('click', e => {
     const takenCell = target.classList.contains('taken')
 
 //adding restart event listener
+document.querySelector('.declareWar').addEventListener('click', () => {
+    document.querySelector('.armistice').classList.remove('seen')
+    document.querySelectorAll('.gameGrid').forEach(cell => {
+        cell.classList.remove('taken', 'x', 'o')
+    })
+
+    warGame.turnX = true
+    warGame.stateX = []
+    warGame.stateO = []
+})
 
     //now we loop to see if the player clicks on an available, or taken space//
     if (freeSpace && !takenCell) {
